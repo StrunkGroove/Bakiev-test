@@ -17,8 +17,8 @@ services:
       - "8069:8069"
     volumes:
       - ./data/odoo-data:/var/lib/odoo
-      - ./config:/etc/odoo
-      - ./addons:/mnt/extra-addons
+      - ./config:/etc/odoo:rw
+      - ./addons:/mnt/extra-addons:rw
     tty: true
     command: -- --dev=reload
     restart: always
