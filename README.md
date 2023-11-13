@@ -12,7 +12,7 @@ docker-compose up --build
 ```
 ### Activate container env
 ```
-docker exec -it <container id> bash
+docker exec -it odoo-web bash
 ```
 ### Create odoo module
 ```
