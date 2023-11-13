@@ -1,7 +1,7 @@
 # odoo-tutorial
 ### Access permission
 ```
-mkdir addons && sudo chmod -R 777 addons 
+sudo chmod -R 777 addons 
 ```
 ```
 sudo chmod -R 777 config
