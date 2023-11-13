@@ -1,0 +1,11 @@
+<odoo>
+  <data>
+
+    <record model="ir.actions.act_window" id="add_product.stocks">
+        <field name="name">Склады</field>
+        <field name="res_model">add_product.stocks</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+  </data>
+</odoo>

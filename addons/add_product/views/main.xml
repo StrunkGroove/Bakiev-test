@@ -1,0 +1,254 @@
+<odoo>
+    <data>
+        
+        <record model="ir.ui.view" id="view_add_product_cost_type_form">
+            <field name="name">add_product.cost_type.form</field>
+            <field name="model">add_product.cost_type</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <field name="name"/>
+                        <field name="price"/>
+                        <field name="base_act_id" invisible="1"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <!-- Акты -->
+        <record model="ir.actions.act_window" id="add_product.act_actions">
+        <field name="name">Проведение акта</field>
+        <field name="res_model">add_product.act_actions</field>
+        <field name="view_mode">tree,form</field>
+        </record>
+
+        <record model="ir.actions.server" id="action_apply_product">
+            <field name="name">Применить акт</field>
+            <field name="model_id" ref="add_product.act_actions"/>
+            <field name="binding_model_id" ref="add_product.act_actions"/>
+            <field name="state">code</field>
+            <field name="code">
+                action = records.apply_product()
+            </field>
+        </record>
+
+        <record id="view_add_product_act_actions_form" model="ir.ui.view">
+            <field name="name">add.product.act.actions.form</field>
+            <field name="model">add_product.act_actions</field>
+            <field name="arch" type="xml">
+                <form>
+                    <button string="Применить" class="oe_highlight" type="object" name="apply_product" args="[]" />
+                    <group string="Основные данные">
+                        <field name="status" required="1"/>
+                        <field name="from_stock"/>
+                        <field name="to_stock" required="1"/>
+                    </group>
+                    <group string="О товаре">
+                        <field name="products" required="1"/>
+                        <field name="num_products" required="1"/>
+                    </group>
+                    <group string="Статья прямых затрат/приходов">
+                        <field name="costs">
+                            <tree>
+                                <field name="name"/>
+                                <field name="price"/>
+                            </tree>
+                        </field>
+                        <group string="Прибыль">
+                            <field name="summ"/>
+                        </group>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_add_product_act_actions_tree" model="ir.ui.view">
+            <field name="name">add.product.act.actions.tree</field>
+            <field name="model">add_product.act_actions</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="status"/>
+                    <field name="from_stock"/>
+                    <field name="to_stock"/>
+                    <field name="products"/>
+                    <field name="num_products"/>
+                    <field name="costs"/>
+                    <field name="summ"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Реализованные акты -->
+        <record model="ir.actions.act_window" id="add_product.done_act">
+        <field name="name">Реализованные акты</field>
+        <field name="res_model">add_product.done_act</field>
+        <field name="view_mode">tree,form</field>
+        </record>
+
+        <record id="view_add_product_done_act_form" model="ir.ui.view">
+            <field name="name">add.product.done.act.form</field>
+            <field name="model">add_product.done_act</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group string="Основные данные">
+                        <field name="timestamp"/>
+                        <field name="status"/>
+                        <field name="from_stock"/>
+                        <field name="to_stock"/>
+                    </group>
+                    <group string="О товаре">
+                        <field name="products"/>
+                        <field name="num_products"/>
+                    </group>
+                    <group string="Затраты/Приходы">
+                        <field name="costs" widget="many2many_pills">
+                            <tree>
+                                <field name="name"/>
+                                <field name="price"/>
+                            </tree>
+                        </field>
+                        <group string="Прибыль">
+                                <field name="summ"/>
+                        </group>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+
+        <record id="view_add_product_done_act_tree" model="ir.ui.view">
+            <field name="name">add.product.done.act.tree</field>
+            <field name="model">add_product.done_act</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="number"/>
+                    <field name="timestamp"/>
+                    <field name="status"/>
+                    <field name="products"/>
+                    <field name="num_products"/>
+                    <field name="from_stock"/>
+                    <field name="to_stock"/>
+                    <field name="costs"/>
+                    <field name="summ"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Маркированные товары -->
+        <record model="ir.actions.act_window" id="add_product.all_products">
+        <field name="name">Маркированные товары</field>
+        <field name="res_model">add_product.mark_products</field>
+        <field name="view_mode">tree,form</field>
+        </record>
+        <record id="view_add_product_mark_products_tree" model="ir.ui.view">
+            <field name="name">add.product.mark.products.tree</field>
+            <field name="model">add_product.mark_products</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="products"/>
+                    <field name="stock"/>
+                    <field name="status"/>
+                    <field name="costs"/>
+                    <field name="summ"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_add_product_mark_products_form" model="ir.ui.view">
+            <field name="name">add.product.mark.products.form</field>
+            <field name="model">add_product.mark_products</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group string="Основные данные">
+                        <field name="products"/>
+                        <field name="stock"/>
+                        <field name="status"/>
+                    </group>
+                    <group string="Затраты/Приходы">
+                        <field name="costs" widget="many2many_pills">
+                            <tree>
+                                <field name="timestamp"/>
+                                <field name="name"/>
+                                <field name="price"/>
+                            </tree>
+                        </field>
+                        <group string="Прибыль">
+                                <field name="summ"/>
+                        </group>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+
+        <!-- Затраты -->
+        <record model="ir.actions.act_window" id="expenses">
+            <field name="name">Затраты</field>
+            <field name="res_model">add_product.cost_name</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!-- Склады -->
+        <record model="ir.actions.act_window" id="add_product.stocks">
+            <field name="name">Склады</field>
+            <field name="res_model">add_product.stocks</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!-- Статусы -->
+        <record model="ir.actions.act_window" id="add_product.status">
+            <field name="name">Статусы</field>
+            <field name="res_model">add_product.status</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!-- Товары -->
+        <record model="ir.actions.act_window" id="add_product.action_list_products">
+        <field name="name">Добавление товара</field>
+        <field name="res_model">add_product.add_product</field>
+        <field name="view_mode">tree,form</field>
+        </record>
+
+        <record id="view_add_product_action_list_products_tree" model="ir.ui.view">
+            <field name="name">add.product.action.list.products.tree</field>
+            <field name="model">add_product.add_product</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="description"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Движение товаров -->
+        <menuitem name="Движение товаров" id="main" />
+        <!-- Артефакты -->
+        <menuitem name="Артефакты" id="artifacts" />
+
+            <!-- Акты -->
+            <menuitem name="Акты" id="list_act_actions" parent="main"/>
+                <!-- Шаблоны -->
+                <menuitem name="Шаблоны" id="list_sample" parent="list_act_actions" action="add_product.act_actions"/>
+                <!-- Реализованные акты -->
+                <menuitem name="Акты изменения свойств товаров" id="list_done_act" parent="list_act_actions" action="add_product.done_act"/>
+
+            <!-- Маркированные товары -->
+            <menuitem name="Маркированные товары" id="mark_prodcts" parent="main"/>
+                <!-- Все товары -->
+                <menuitem name="Все товары" id="products" parent="mark_prodcts" action="add_product.all_products"/>
+
+            <!-- Затраты -->
+            <menuitem name="Затраты/Приходы" id="list_expenses" parent="artifacts" action="expenses"/>
+
+            <!-- Склады -->
+            <menuitem name="Склады" id="list_stocks" parent="artifacts" action="add_product.stocks"/>
+
+            <!-- Статусы -->
+            <menuitem name="Статусы" id="list_status" parent="artifacts" action="add_product.status"/>
+
+            <!-- Товары -->
+            <menuitem name="Товары" id="list_product" parent="main" action="add_product.action_list_products"/>
+
+
+    </data>
+</odoo>

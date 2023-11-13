@@ -1,0 +1,22 @@
+<odoo>
+  <data>
+
+    <record model="ir.actions.act_window" id="add_product.action_list_products">
+      <field name="name">Добавление товара</field>
+      <field name="res_model">add_product.add_product</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="view_add_product_action_list_products_tree" model="ir.ui.view">
+        <field name="name">add.product.action.list.products.tree</field>
+        <field name="model">add_product.add_product</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="description"/>
+            </tree>
+        </field>
+    </record>
+
+  </data>
+</odoo>

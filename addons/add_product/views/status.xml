@@ -1,0 +1,11 @@
+<odoo>
+  <data>
+
+    <record model="ir.actions.act_window" id="add_product.status">
+        <field name="name">Статусы</field>
+        <field name="res_model">add_product.status</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+  </data>
+</odoo>

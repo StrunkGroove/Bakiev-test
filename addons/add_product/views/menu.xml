@@ -1,0 +1,63 @@
+<odoo>
+  <data>
+
+    <!-- Главное меню -->
+    <menuitem name="Главное меню" id="add_product.menu_products" />
+
+    <!-- Акты -->
+    <!-- <menuitem
+        name="Акты"
+        id="add_product.list_act_actions"
+        parent="add_product.menu_products"
+        action="add_product.act_actions"
+    /> -->
+
+    <!-- Маркированные товары -->
+    <!-- <menuitem
+        name="Маркированные товары"
+        id="add_product.list_marks_products"
+        parent="add_product.menu_products"
+    > -->
+        <!-- Все товары -->
+        <!-- <menuitem
+            name="Все товары"
+            id="add_product.all_products"
+            parent="add_product.list_marks_products"
+            action="add_product.marks_products"
+        /> -->
+
+        <!-- Сгрупированные товары -->
+        <!-- <menuitem
+            name="Сгрупированные товары"
+            id="add_product.group_menu"
+            parent="add_product.list_marks_products"
+            action="add_product.group_marks_products"
+        />
+    </menuitem> -->
+ 
+    <!-- Склады -->
+    <menuitem
+        name="Склады"
+        id="add_product.list_stocks"
+        parent="add_product.menu_products"
+        action="add_product.stocks"
+    />
+
+    <!-- Статусы -->
+    <menuitem
+        name="Статусы"
+        id="add_product.list_status"
+        parent="add_product.menu_products"
+        action="add_product.status"
+    />
+
+    <!-- Продукты -->
+    <menuitem
+        name="Продукты"
+        id="add_product.list_product"
+        parent="add_product.menu_products"
+        action="add_product.action_list_products"
+    />
+
+  </data>
+</odoo>

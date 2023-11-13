@@ -1,0 +1,40 @@
+<odoo>
+  <data>
+
+    <record model="ir.actions.act_window" id="add_product.marks_products">
+      <field name="name">Маркированные товары</field>
+      <field name="res_model">add_product.marks_products</field>
+      <field name="view_mode">tree</field>
+    </record>
+    <record id="view_add_product_marks_products_tree" model="ir.ui.view">
+        <field name="name">add.product.marks.products.tree</field>
+        <field name="model">add_product.marks_products</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="unique_id"/>
+                <field name="products"/>
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="add_product.group_marks_products">
+      <field name="name">Сгрупированные товары</field>
+      <field name="res_model">add_product.group_marks_products</field>
+      <field name="view_mode">tree</field>
+    </record>
+    <record id="view_add_product_group_marks_products_tree" model="ir.ui.view">
+        <field name="name">add.product.group.marks.products.tree</field>
+        <field name="model">add_product.group_marks_products</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="products"/>
+                <field name="num"/>
+            </tree>
+        </field>
+    </record>
+
+
+
+
+  </data>
+</odoo>
